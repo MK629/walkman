@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:walkman/components/home/home.dart';
+import 'package:walkman/approot/root_widget.dart';
 
 class AppRoot extends StatelessWidget {
   const AppRoot({super.key});
@@ -7,7 +7,7 @@ class AppRoot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: AppRootWidget()
     );
   }
 }

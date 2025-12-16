@@ -5,8 +5,8 @@ import 'package:walkman/components/nav/navbar.dart';
 import 'package:walkman/states/nav_notifier.dart';
 import 'package:walkman/states/song_library_state.dart';
 
-class Home extends StatelessWidget {
-  const Home({ super.key });
+class AppRootWidget extends StatelessWidget {
+  const AppRootWidget({ super.key });
 
   @override
   Widget build(BuildContext context){
