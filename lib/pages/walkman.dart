@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:walkman/states/walkman_state.dart';
+import 'package:walkman/types/song.dart';
 
 class Walkman extends StatelessWidget {
-const Walkman({ super.key });
+  const Walkman({ super.key });
 
-  @override
+@override
   Widget build(BuildContext context){
-    return Text("walkman");
+    var walkmanState = context.watch<WalkmanState>();
+    Song currentSong = walkmanState.currentSong;
+
+    return Text(walkmanState.isPlayingMusic ? "There's music in the air! ${currentSong.title}." : "Nothing's playing shit.");
   }
 }

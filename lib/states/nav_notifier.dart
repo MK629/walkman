@@ -5,7 +5,6 @@ class NavNotifier extends ChangeNotifier {
 
   void changePage(int newPage){
     page = newPage;
-    print(page);
     notifyListeners();
   }
 }
