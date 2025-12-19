@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:walkman/states/nav_notifier.dart';
 import 'package:walkman/states/song_library_state.dart';
 import 'package:walkman/states/walkman_state.dart';
 import 'package:walkman/types/song.dart';
@@ -10,7 +9,6 @@ class SongList extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    var navState = context.read<NavNotifier>();
     var walkmanState = context.read<WalkmanState>();
     var songLibraryState = context.watch<SongLibraryState>();
 
@@ -29,7 +27,7 @@ class SongList extends StatelessWidget {
             leading: Icon(Icons.music_note),
             title: Text(song.title),
             onTap: () {
-              walkmanState.setCurrentSong(song);
+              walkmanState.playMusic(song);
             },
           )
       ],

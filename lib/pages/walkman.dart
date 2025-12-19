@@ -11,6 +11,6 @@ class Walkman extends StatelessWidget {
     var walkmanState = context.watch<WalkmanState>();
     Song currentSong = walkmanState.currentSong;
 
-    return Text(walkmanState.isPlayingMusic ? "There's music in the air! ${currentSong.title}." : "Nothing's playing shit.");
+    return Text(walkmanState.player.playing ? "There's music in the air! ${currentSong.title}." : "Nothing's playing shit.");
   }
 }
