@@ -24,7 +24,7 @@ class SongList extends StatelessWidget {
 
         for(Song song in selectedSongList)
           ListTile(
-            leading: Icon(Icons.music_note),
+            leading: Icon(Icons.music_note_outlined),
             title: Text(song.title),
             onTap: () {
               walkmanState.playMusic(song);

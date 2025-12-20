@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:walkman/components/walkman/walkman_buttons.dart';
+import 'package:walkman/components/walkman/walkman_display.dart';
 import 'package:walkman/states/walkman_state.dart';
 import 'package:walkman/types/song.dart';
 
@@ -11,6 +13,12 @@ class Walkman extends StatelessWidget {
     var walkmanState = context.watch<WalkmanState>();
     Song currentSong = walkmanState.currentSong;
 
-    return Text(walkmanState.player.playing ? "There's music in the air! ${currentSong.title}." : "Nothing's playing shit.");
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        WalkmanDisplay(state: walkmanState, currentSong: currentSong),
+        WalkmanButtons(state: walkmanState)
+      ],
+    );
   }
 }

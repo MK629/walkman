@@ -8,7 +8,11 @@ class SongLibraryState extends ChangeNotifier{
 
   void addSongs(List<XFile> selectedSongs){
     for (var file in selectedSongs) {
-      songList.add(Song(file.name, file.path));
+      Song newSong = Song(file.name, file.path);
+
+      if(!songList.contains(newSong)){
+        songList.add(newSong);
+      }
     }
 
     notifyListeners();

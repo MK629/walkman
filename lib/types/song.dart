@@ -3,4 +3,14 @@ class Song{
   late String path;
 
   Song(this.title, this.path);
+
+  @override
+  bool operator ==(Object other) {
+    return other is Song && path == other.path;
+  }
+  
+  @override
+  // ignore: unnecessary_overrides
+  int get hashCode => super.hashCode;
+  
 }
