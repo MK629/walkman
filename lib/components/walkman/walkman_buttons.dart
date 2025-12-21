@@ -18,7 +18,6 @@ class WalkmanButtons extends StatelessWidget{
           }, 
           label: Text("PREV"),
           icon: Icon(Icons.skip_previous_rounded),
-          style: getButtonStyle()
         ),
         
         SizedBox(width: 10,),
@@ -29,7 +28,6 @@ class WalkmanButtons extends StatelessWidget{
           }, 
           label: Text("NEXT"),
           icon: Icon(Icons.skip_next_rounded),
-          style: getButtonStyle()
         ),
         
         SizedBox(width: 10,),
@@ -40,7 +38,6 @@ class WalkmanButtons extends StatelessWidget{
           }, 
           label: Text("PLAY"),
           icon: Icon(Icons.play_arrow_rounded),
-          style: getButtonStyle()
         ),
 
         SizedBox(width: 10,),
@@ -51,7 +48,6 @@ class WalkmanButtons extends StatelessWidget{
           }, 
           label: Text("PAUSE"),
           icon: Icon(Icons.pause_rounded),
-          style: getButtonStyle()
         ),
 
         SizedBox(width: 10,),
@@ -62,29 +58,8 @@ class WalkmanButtons extends StatelessWidget{
           }, 
           label: Text("STOP"),
           icon: Icon(Icons.stop_rounded),
-          style: getButtonStyle()
         ),
       ],
     );
   }
-  
-}
-
-ButtonStyle getButtonStyle(){
-  return ButtonStyle(
-    elevation: WidgetStateProperty.resolveWith((buttonState){
-      if (buttonState.contains(WidgetState.pressed)){
-        return 1;
-      }
-      else{
-        return 4;
-      }
-    }),
-    shape: WidgetStateProperty.all(
-      const RoundedRectangleBorder(
-        borderRadius: BorderRadius.zero
-      )
-    ),
-    padding: WidgetStateProperty.all(EdgeInsets.only(left: 3, right: 3)),
-  );
 }

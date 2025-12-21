@@ -12,9 +12,13 @@ class Navbar extends StatelessWidget {
 
     return BottomNavigationBar(
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.play_circle_outlined), label: "Walkman"),
+        BottomNavigationBarItem(icon: Icon(Icons.speaker), label: "Walkman"),
         BottomNavigationBarItem(icon: Icon(Icons.library_music_outlined), label: "Songs")
-      ], 
+      ],
+      selectedItemColor: Colors.cyan,
+      unselectedItemColor: Colors.teal,
+      selectedLabelStyle: TextStyle(fontSize: 10),
+      unselectedLabelStyle: TextStyle(fontSize: 10),
       currentIndex: currentPage,
       onTap: (value) => navState.changePage(value),  
     );

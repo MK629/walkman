@@ -12,23 +12,28 @@ class WalkmanDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(12),
-          margin: const EdgeInsets.only(bottom: 16),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.black,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(4)
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.only(left: 12, right: 12, top: 20, bottom: 20),
+        margin: const EdgeInsets.only(bottom: 16),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.teal,
+            width: 2,
           ),
-          child: Column(
-          children: [
-              Text(!state.player.playing ? "Press play button to play..." : "Now playing:"),
-              Text(currentSong.title.isEmpty ? "" : currentSong.title)
-            ],
-          ),
-        );
+          borderRadius: BorderRadius.circular(4),
+          color: Colors.cyan,
+        ),
+        child: Column(
+        children: [
+            Text(style: TextStyle(color: Colors.black, fontSize: 10), !state.player.playing ? "Press play button to play..." : "Now playing:"),
+            SizedBox(height: 20,),
+            Text(style: TextStyle(color: Colors.black, fontSize: 9), currentSong.title.isEmpty ? "" : currentSong.title),
+          ],
+        ),
+      ),
+    );
   }
 }
