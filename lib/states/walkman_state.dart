@@ -55,7 +55,7 @@ class WalkmanState extends ChangeNotifier{
   }
 
   void playNext(){
-    if(currentSong.path.isNotEmpty && currentSong.title.isNotEmpty && loadedSongs.isNotEmpty){
+    if(!currentSong.isNothingBurger() && loadedSongs.isNotEmpty){
 
       Song nextSong;
 
@@ -71,7 +71,7 @@ class WalkmanState extends ChangeNotifier{
   }
 
   void playPrev(){
-    if(currentSong.path.isNotEmpty && currentSong.title.isNotEmpty && loadedSongs.isNotEmpty){
+    if(!currentSong.isNothingBurger() && loadedSongs.isNotEmpty){
 
       Song prevSong;
 
@@ -87,16 +87,16 @@ class WalkmanState extends ChangeNotifier{
   }
 
   void pauseMusic() async {
-    if(currentSong.title.isNotEmpty && currentSong.path.isNotEmpty && player.playing){
+    if(!currentSong.isNothingBurger() && player.playing){
       await player.pause();
     }
   }
 
-  void resumeMusic() async {
-    if(currentSong.title.isEmpty && currentSong.path.isEmpty && loadedSongs.isNotEmpty){
+  void resumeOrPlayBlind() async {
+    if(currentSong.isNothingBurger() && loadedSongs.isNotEmpty){
       playMusic(loadedSongs.first);
     }
-    else if(currentSong.title.isNotEmpty && currentSong.path.isNotEmpty && !player.playing){
+    else if(!currentSong.isNothingBurger() && !player.playing){
       await player.play();
     }
   }

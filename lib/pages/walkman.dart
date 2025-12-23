@@ -16,6 +16,7 @@ class Walkman extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Text("WALKMAN", style: TextStyle(fontSize: 30, color: Colors.cyanAccent),),
         WalkmanDisplay(state: walkmanState, currentSong: currentSong),
         WalkmanButtons(state: walkmanState)
       ],

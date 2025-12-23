@@ -15,7 +15,8 @@ class EmptySongList extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("There is no selected music."),
+        Text("Uh oh. Looks pretty empty.", style: TextStyle(color: Colors.tealAccent),),
+        SizedBox(height: 10,),
         ElevatedButton.icon(
           onPressed: () async {
             var typeGroup = XTypeGroup(label: 'audio', extensions: ['mp3', 'wav']);
@@ -23,7 +24,10 @@ class EmptySongList extends StatelessWidget {
             songLibraryState.addSongs(selectedSongs);
           },
           label: Text("Pick some awesome music"),
-          icon: Icon(Icons.folder)
+          icon: Icon(Icons.folder),
+          style: ButtonStyle(
+            padding: WidgetStateProperty.all(EdgeInsets.only(right: 8, left: 8)),
+          ),
         )
       ],
     );

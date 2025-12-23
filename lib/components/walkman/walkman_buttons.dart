@@ -34,7 +34,7 @@ class WalkmanButtons extends StatelessWidget{
 
         ElevatedButton.icon(
           onPressed: () {
-            state.resumeMusic();
+            state.resumeOrPlayBlind();
           }, 
           label: Text("PLAY"),
           icon: Icon(Icons.play_arrow_rounded),

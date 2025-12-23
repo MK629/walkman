@@ -15,8 +15,8 @@ class Navbar extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.speaker), label: "Walkman"),
         BottomNavigationBarItem(icon: Icon(Icons.library_music_outlined), label: "Songs")
       ],
-      selectedItemColor: Colors.cyan,
-      unselectedItemColor: Colors.teal,
+      selectedItemColor: Colors.cyanAccent,
+      unselectedItemColor: Colors.tealAccent,
       selectedLabelStyle: TextStyle(fontSize: 10),
       unselectedLabelStyle: TextStyle(fontSize: 10),
       currentIndex: currentPage,

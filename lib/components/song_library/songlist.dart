@@ -1,3 +1,4 @@
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:walkman/states/song_library_state.dart';
@@ -18,17 +19,41 @@ class SongList extends StatelessWidget {
     return ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text("Songs:"),
-        ),
-
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Songs:"),
+              ElevatedButton.icon(
+                onPressed: () async {
+                  var typeGroup = XTypeGroup(label: 'audio', extensions: ['mp3', 'wav']);
+                  var selectedSongs = await openFiles(acceptedTypeGroups: [typeGroup]);
+                  songLibraryState.addSongs(selectedSongs);
+                },
+                label: Text("Add more songs"),
+                icon: Icon(Icons.playlist_add),
+                style: ButtonStyle(
+                  padding: WidgetStateProperty.all(EdgeInsets.only(right: 8, left: 8)),
+                ),
+              )
+            ],
+          ),
+        ), 
+        Divider(color: Colors.tealAccent,height: 1,thickness: 1,), 
         for(Song song in selectedSongList)
-          ListTile(
-            leading: Icon(Icons.music_note_outlined),
-            title: Text(song.title),
-            onTap: () {
-              walkmanState.playMusic(song);
-            },
+          Column(
+            children: [
+              ListTile(
+                leading: Icon(Icons.music_note_outlined),
+                title: Text(song.title),
+                onTap: () {
+                  walkmanState.playMusic(song);
+                },
+                style: ListTileStyle.drawer,
+                splashColor: Colors.tealAccent,
+              ),
+              Divider(color: Colors.tealAccent,height: 1,thickness: 0.5,), 
+            ],
           )
       ],
     );

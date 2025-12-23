@@ -16,17 +16,19 @@ class WalkmanDisplay extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Container(
         width: double.infinity,
+        height: 140,
         padding: const EdgeInsets.only(left: 12, right: 12, top: 20, bottom: 20),
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.teal,
+            color: Colors.tealAccent,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(4),
           color: Colors.cyan,
         ),
         child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
             Text(style: TextStyle(color: Colors.black, fontSize: 10), !state.player.playing ? "Press play button to play..." : "Now playing:"),
             SizedBox(height: 20,),
