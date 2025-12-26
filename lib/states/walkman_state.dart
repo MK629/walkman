@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:walkman/types/music_status.dart';
 import 'package:walkman/types/song.dart';
 
 class WalkmanState extends ChangeNotifier{
@@ -7,6 +8,8 @@ class WalkmanState extends ChangeNotifier{
   AudioPlayer player = AudioPlayer();
 
   bool get isPlayingMusic => player.playing;
+
+  MusicStatus musicStatus = MusicStatus.stopped;
 
   Song currentSong = Song("", "");
 
@@ -51,6 +54,7 @@ class WalkmanState extends ChangeNotifier{
 
     await player.setFilePath(currentSong.path);
     player.play();
+    musicStatus = MusicStatus.playing;
     notifyListeners();
   }
 
@@ -87,17 +91,21 @@ class WalkmanState extends ChangeNotifier{
   }
 
   void pauseMusic() async {
-    if(!currentSong.isNothingBurger() && player.playing){
+    if(!currentSong.isNothingBurger() && isPlayingMusic){
       await player.pause();
+      changeMusicStatus(MusicStatus.paused);
     }
   }
 
   void resumeOrPlayBlind() async {
+    //Play blind
     if(currentSong.isNothingBurger() && loadedSongs.isNotEmpty){
       playMusic(loadedSongs.first);
     }
-    else if(!currentSong.isNothingBurger() && !player.playing){
-      await player.play();
+    //Resume
+    else if(!currentSong.isNothingBurger() && !isPlayingMusic){
+      player.play();
+      changeMusicStatus(MusicStatus.playing);
     }
   }
 
@@ -107,10 +115,16 @@ class WalkmanState extends ChangeNotifier{
     //On player.stop(), dart sends a command and awaits a Future response. The response will return without the native cleanup actually being done. We must wait more.
     await player.processingStateStream.firstWhere((s) => s == ProcessingState.idle);
     currentSong = Song("", "");
+    musicStatus = MusicStatus.stopped;
     notifyListeners();
   }
 
   void loadSongs(List<Song> loadedSongs) {
     this.loadedSongs = loadedSongs;
+  }
+
+  void changeMusicStatus(MusicStatus newMusicStatus){
+    musicStatus = newMusicStatus;
+    notifyListeners();
   }
 }

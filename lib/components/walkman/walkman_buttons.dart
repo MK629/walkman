@@ -17,7 +17,7 @@ class WalkmanButtons extends StatelessWidget{
             state.playPrev();
           }, 
           label: Text("PREV"),
-          icon: Icon(Icons.skip_previous_rounded),
+          icon: Icon(Icons.skip_previous),
         ),
         
         SizedBox(width: 10,),
@@ -27,7 +27,7 @@ class WalkmanButtons extends StatelessWidget{
             state.playNext();
           }, 
           label: Text("NEXT"),
-          icon: Icon(Icons.skip_next_rounded),
+          icon: Icon(Icons.skip_next),
         ),
         
         SizedBox(width: 10,),
@@ -37,7 +37,7 @@ class WalkmanButtons extends StatelessWidget{
             state.resumeOrPlayBlind();
           }, 
           label: Text("PLAY"),
-          icon: Icon(Icons.play_arrow_rounded),
+          icon: Icon(Icons.play_arrow),
         ),
 
         SizedBox(width: 10,),
@@ -47,7 +47,7 @@ class WalkmanButtons extends StatelessWidget{
             state.pauseMusic();
           }, 
           label: Text("PAUSE"),
-          icon: Icon(Icons.pause_rounded),
+          icon: Icon(Icons.pause),
         ),
 
         SizedBox(width: 10,),
@@ -57,7 +57,7 @@ class WalkmanButtons extends StatelessWidget{
             state.stopMusic();
           }, 
           label: Text("STOP"),
-          icon: Icon(Icons.stop_rounded),
+          icon: Icon(Icons.stop),
         ),
       ],
     );
