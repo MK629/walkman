@@ -5,7 +5,7 @@ class WalkmanButtons extends StatelessWidget{
 
   final WalkmanState state;
 
-  const WalkmanButtons({required this.state,super.key});
+  const WalkmanButtons({required this.state, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:walkman/components/walkman/shuffle_button.dart';
 import 'package:walkman/components/walkman/walkman_buttons.dart';
 import 'package:walkman/components/walkman/walkman_display.dart';
 import 'package:walkman/states/walkman_state.dart';
@@ -21,7 +22,8 @@ class Walkman extends StatelessWidget {
       children: [
         Text("WALKMAN", style: TextStyle(fontSize: 30, color: Colors.cyanAccent),),
         WalkmanDisplay(isPlayingMusic: isPlayingMusic, musicStatus: musicStatus, currentSong: currentSong),
-        WalkmanButtons(state: walkmanState)
+        WalkmanButtons(state: walkmanState),
+        ShuffleButton(state: walkmanState)
       ],
     );
   }

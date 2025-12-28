@@ -11,15 +11,15 @@ class SongLibrary extends StatelessWidget {
   Widget build(BuildContext context){
     var songLibraryState = context.watch<SongLibraryState>();
     
-    Widget currentList;
+    Widget currentListPage;
     
     if(songLibraryState.songList.isEmpty){
-      currentList = EmptySongList();
+      currentListPage = EmptySongList();
     }
     else{
-      currentList = SongList();
+      currentListPage = SongList();
     }
 
-    return currentList;
+    return currentListPage;
   }
 }

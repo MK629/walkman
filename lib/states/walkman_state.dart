@@ -9,6 +9,8 @@ class WalkmanState extends ChangeNotifier{
 
   bool get isPlayingMusic => player.playing;
 
+  bool isShuffled = false;
+
   MusicStatus musicStatus = MusicStatus.stopped;
 
   Song currentSong = Song("", "");
@@ -119,12 +121,30 @@ class WalkmanState extends ChangeNotifier{
     notifyListeners();
   }
 
-  void loadSongs(List<Song> loadedSongs) {
-    this.loadedSongs = loadedSongs;
+  void loadSongs(List<Song> songsToLoad) {
+    if(loadedSongs.length < songsToLoad.length){
+      loadedSongs = List<Song>.from(songsToLoad);
+
+      if(isShuffled){
+        loadedSongs.shuffle();
+      }
+    }
   }
 
   void changeMusicStatus(MusicStatus newMusicStatus){
     musicStatus = newMusicStatus;
+    notifyListeners();
+  }
+
+  void shuffleOn(){
+    loadedSongs.shuffle();
+    isShuffled = true;
+    notifyListeners();
+  }
+
+  void shuffleOff(){
+    loadedSongs.sort((a,b) => a.title.compareTo(b.title));
+    isShuffled = false;
     notifyListeners();
   }
 }
