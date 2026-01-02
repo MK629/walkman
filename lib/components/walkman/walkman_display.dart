@@ -17,13 +17,13 @@ class WalkmanDisplay extends StatelessWidget {
 
     switch(musicStatus){
       case MusicStatus.playing:
-        statusIcon = Icon(Icons.play_arrow, color: Colors.black);
+        statusIcon = Icon(Icons.play_arrow, color: Colors.cyanAccent);
       break;
       case MusicStatus.paused:
-        statusIcon = Icon(Icons.pause, color: Colors.black);
+        statusIcon = Icon(Icons.pause, color: Colors.cyanAccent);
       break;
       case MusicStatus.stopped:
-        statusIcon = Icon(Icons.stop, color: Colors.black);
+        statusIcon = Icon(Icons.stop, color: Colors.cyanAccent);
       break;
     }
 
@@ -36,17 +36,17 @@ class WalkmanDisplay extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.tealAccent,
+            color: Colors.cyanAccent,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(4),
-          color: Colors.cyan,
+          color: Colors.black,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text.rich(TextSpan(
-              style: TextStyle(color: Colors.black, fontSize: 11),
+              style: TextStyle(color: Colors.cyanAccent, fontSize: 11),
               children: [
                 getHeadText(isPlayingMusic)
               ]
@@ -57,7 +57,7 @@ class WalkmanDisplay extends StatelessWidget {
               alignment: Alignment.center,
               width: double.infinity,
               height: 25,
-              child: Text(style: TextStyle(color: Colors.black, fontSize: 9), currentSong.title.isEmpty ? "" : currentSong.title, maxLines: 2, overflow: TextOverflow.ellipsis,),
+              child: Text(style: TextStyle(color: Colors.cyanAccent, fontSize: 9), currentSong.title.isEmpty ? "" : currentSong.title, maxLines: 2, overflow: TextOverflow.ellipsis,),
             ),
             SizedBox(height: 25,),
             statusIcon
@@ -78,7 +78,7 @@ TextSpan getHeadText(bool isPlayingMusic){
         TextSpan(text: "Press "),
         WidgetSpan(
           alignment: PlaceholderAlignment.middle,
-          child: Icon(Icons.play_arrow, color: Colors.black, size: 16)
+          child: Icon(Icons.play_arrow, color: Colors.cyanAccent, size: 16)
         ),
         TextSpan(text: " to play or resume...")
       ]
