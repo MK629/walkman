@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:walkman/helpers/music_helper.dart';
 import 'package:walkman/states/song_library_state.dart';
+import 'package:walkman/states/walkman_state.dart';
 
 class EmptySongList extends StatelessWidget {
   const EmptySongList({super.key});
@@ -13,6 +14,9 @@ class EmptySongList extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var songLibraryState = context.read<SongLibraryState>();
+    var walkmanState = context.read<WalkmanState>();
+
+    walkmanState.loadSongs(songLibraryState.songList);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
