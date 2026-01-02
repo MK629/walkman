@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:walkman/approot/root_widget.dart';
 
 class AppRoot extends StatelessWidget {
-  const AppRoot({super.key});
+
+  final List<String> importedSongs;
+
+  const AppRoot({required this.importedSongs, super.key});
   
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Walkman",
       theme: getGlobalThemeData(),
-      home: AppRootWidget()
+      home: AppRootWidget(importedSongs: importedSongs,)
     );
   }
 }

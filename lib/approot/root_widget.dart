@@ -7,14 +7,17 @@ import 'package:walkman/states/song_library_state.dart';
 import 'package:walkman/states/walkman_state.dart';
 
 class AppRootWidget extends StatelessWidget {
-  const AppRootWidget({ super.key });
+   final List<String> importedSongs;
+   
+  const AppRootWidget({required this.importedSongs, super.key });
 
   @override
   Widget build(BuildContext context){
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => NavNotifier()),
-        ChangeNotifierProvider(create: (context) => SongLibraryState()),
+        ChangeNotifierProvider(create: (context) => SongLibraryState(importedSongs)),
         ChangeNotifierProvider(create: (context) => WalkmanState())
       ],
       child: Scaffold(

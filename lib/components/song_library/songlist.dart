@@ -1,6 +1,8 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
+import 'package:walkman/helpers/music_helper.dart';
 import 'package:walkman/states/song_library_state.dart';
 import 'package:walkman/states/walkman_state.dart';
 import 'package:walkman/types/song.dart';
@@ -28,7 +30,12 @@ class SongList extends StatelessWidget {
                 onPressed: () async {
                   var typeGroup = XTypeGroup(label: 'audio', extensions: ['mp3', 'wav']);
                   var selectedSongs = await openFiles(acceptedTypeGroups: [typeGroup]);
-                  songLibraryState.addSongs(selectedSongs);
+                  if(selectedSongs.isNotEmpty){
+                    await MusicHelper.importMusic(selectedSongs);
+                    Box<String> musicBox = await Hive.openBox("MusicBox");
+                    List<String> importedSongsPath = musicBox.values.toList();
+                    songLibraryState.addSongs(importedSongsPath);
+                  }
                 },
                 label: Text("Add more songs"),
                 icon: Icon(Icons.playlist_add),
@@ -51,6 +58,10 @@ class SongList extends StatelessWidget {
                 },
                 style: ListTileStyle.drawer,
                 splashColor: Colors.tealAccent,
+                trailing: IconButton(onPressed: () async {
+                  await MusicHelper.removeMusic(song.path);
+                  songLibraryState.removeSong(song);
+                }, icon: Icon(Icons.delete_sweep)),
               ),
               Divider(color: Colors.tealAccent,height: 1,thickness: 0.5,), 
             ],

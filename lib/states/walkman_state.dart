@@ -122,7 +122,7 @@ class WalkmanState extends ChangeNotifier{
   }
 
   void loadSongs(List<Song> songsToLoad) {
-    if(loadedSongs.length < songsToLoad.length){
+    if(loadedSongs.length != songsToLoad.length){
       loadedSongs = List<Song>.from(songsToLoad);
 
       if(isShuffled){
