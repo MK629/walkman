@@ -1,5 +1,5 @@
-import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:walkman/types/song.dart';
 
 class SongLibraryState extends ChangeNotifier{
@@ -7,10 +7,7 @@ class SongLibraryState extends ChangeNotifier{
 
   SongLibraryState(List<String> importedSongs){
     for (String fullPath in importedSongs) {
-      XFile importedSong = XFile(fullPath);
-
-      Song newSong = Song(importedSong.name.split('.mp3').first, importedSong.path);
-      
+      Song newSong = Song(basenameWithoutExtension(fullPath), fullPath);
       songList.add(newSong);
     }
 
@@ -19,9 +16,8 @@ class SongLibraryState extends ChangeNotifier{
 
   void addSongs(List<String> importedSongs) {
     for (String fullPath in importedSongs) {
-      XFile importedSong = XFile(fullPath);
 
-      Song newSong = Song(importedSong.name.split('.mp3').first, importedSong.path);
+      Song newSong = Song(basenameWithoutExtension(fullPath), fullPath);
 
       if(!songList.contains(newSong)){
         songList.add(newSong);

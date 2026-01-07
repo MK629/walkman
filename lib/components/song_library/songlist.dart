@@ -1,4 +1,4 @@
-import 'package:file_selector/file_selector.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
@@ -28,10 +28,9 @@ class SongList extends StatelessWidget {
               Text("Songs:"),
               ElevatedButton.icon(
                 onPressed: () async {
-                  var typeGroup = XTypeGroup(label: 'audio', extensions: ['mp3', 'wav']);
-                  var selectedSongs = await openFiles(acceptedTypeGroups: [typeGroup]);
-                  if(selectedSongs.isNotEmpty){
-                    await MusicHelper.importMusic(selectedSongs);
+                  var selectedSongs = await FilePicker.platform.pickFiles(type: FileType.custom, allowMultiple: true, allowedExtensions: [".mp3"], withData: false);
+                  if(selectedSongs!.files.isNotEmpty){
+                    await MusicHelper.importMusic(selectedSongs.files);
                     Box<String> musicBox = await Hive.openBox("MusicBox");
                     List<String> importedSongsPath = musicBox.values.toList();
                     songLibraryState.addSongs(importedSongsPath);

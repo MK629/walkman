@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:file_selector/file_selector.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -16,7 +16,7 @@ class MusicHelper {
     return "${dir.path}/music";
   }
 
-  static Future<void> importMusic(List<XFile> selectedSongs)async{
+  static Future<void> importMusic(List<PlatformFile> selectedSongs)async{
     final musicHome = Directory(await getMusicHome());
     if (!await musicHome.exists()) {
       await musicHome.create(recursive: true);
@@ -25,11 +25,13 @@ class MusicHelper {
     Box<String> musicBox = await Hive.openBox("MusicBox");
 
     for (var file in selectedSongs) {
+      //Convert XFile to dart.io.File because XFile eagerly caches unnecessarily
+      File fileToCopy = File(file.path.toString());
       String newImportedSongPath = "${musicHome.path}/${file.name}";
 
       if(!musicBox.values.contains(newImportedSongPath)){
         //Copy file to app's music dir
-        await file.saveTo(newImportedSongPath);
+        await fileToCopy.copy(newImportedSongPath);
         //Add path to Hive
         await musicBox.add(newImportedSongPath);
       }
