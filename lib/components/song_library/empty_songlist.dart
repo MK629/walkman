@@ -15,7 +15,7 @@ class EmptySongList extends StatelessWidget {
 
     var songLibraryState = context.read<SongLibraryState>();
     var walkmanState = context.read<WalkmanState>();
-
+    
     walkmanState.loadSongs(songLibraryState.songList);
 
     return Column(

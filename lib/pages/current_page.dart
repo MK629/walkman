@@ -20,6 +20,6 @@ class CurrentPage extends StatelessWidget {
       default: throw UnimplementedError('no widget for $currentPage');
     }
     
-    return page;
+    return SafeArea(child: page);
   }
 }
