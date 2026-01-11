@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NavNotifier extends ChangeNotifier {
-  int page = 0;
+  int page = 1;
 
   void changePage(int newPage){
     page = newPage;
